@@ -1,0 +1,40 @@
+@page
+@model CRMAPP.Pages.Customers.Index
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center mb-3">List of Customers</h2>
+
+<a class="btn btn-primary mb-3" href="/Customers/Create">New Customer</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Company</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var customer in Model.CustomersList){
+        <tr>
+            <td>@customer.Id</td>
+            <td>@(customer.Firstname + " " + customer.Lastname)</td>
+            <td>@customer.Email</td>
+            <td>@customer.Phone</td>
+            <td>@customer.Company</td>
+            <td>@customer.CreatedAt</td>
+
+            <td style="white-space:nowrap">
+                <a class="btn btn-primary btn-sm" href="/Customers/Edit?id=@customer.Id">Edit</a>
+                <a class="btn btn-danger btn-sm" href="/Customers/Delette?id=@customer.Id">Delete</a>
+            </td>
+        </tr>
+    }
+  </tbody>
+</table>
